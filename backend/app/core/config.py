@@ -43,8 +43,15 @@ class Settings(BaseSettings):
     ANTHROPIC_API_KEY: str = ""
 
     # CORS
-    FRONTEND_URL: str = "http://localhost:3000"
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:3000"]
+   FRONTEND_URL: str = "http://localhost:3000"
+
+@property
+def ALLOWED_ORIGINS(self) -> list[str]:
+    return [
+        self.FRONTEND_URL,
+        "http://localhost:3000",
+        "http://127.0.0.1:3000",
+    ]
 
 
 @lru_cache
